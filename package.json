@@ -8,6 +8,9 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-tailwindcss": "^0.5.14",
     "turbo": "^1.13.2",
     "typescript": "^5.4.5"
   },

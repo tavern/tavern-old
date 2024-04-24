@@ -1,4 +1,4 @@
-# @pkgs/db
+# @pkgs/env
 
 To install dependencies:
 

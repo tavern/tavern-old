@@ -1,17 +1,20 @@
 {
   "name": "@pkgs/db",
   "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "dev": "echo 'no dev script'"
-  },
   "devDependencies": {
-    "@types/bun": "^1.1.0"
+    "@types/bun": "^1.1.0",
+    "drizzle-kit": "^0.20.17"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "scripts": {
+    "dev": "echo 'no dev script'"
+  },
+  "type": "module",
   "dependencies": {
-    "drizzle": "^1.4.0"
+    "@libsql/client": "^0.6.0",
+    "@pkgs/env": "workspace:*",
+    "drizzle-orm": "^0.30.9"
   }
 }
