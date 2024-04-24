@@ -8,13 +8,9 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
-  "scripts": {
-    "dev": "echo 'no dev script'"
-  },
   "type": "module",
   "dependencies": {
     "@libsql/client": "^0.6.0",
-    "@pkgs/env": "workspace:*",
     "drizzle-orm": "^0.30.9",
     "nanoid": "^5.0.7"
   }
