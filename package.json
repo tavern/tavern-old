@@ -1,0 +1,17 @@
+{
+  "name": "tavern",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.2",
+    "typescript": "^5.4.5"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}

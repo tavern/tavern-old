@@ -1,0 +1,39 @@
+on:
+  push:
+    paths: 'apps/tmdb/**'
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # To use Remote Caching, uncomment the next lines and follow the steps below.
+    # env:
+    #  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+    #  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+    #  TURBO_REMOTE_ONLY: true
+
+    permissions:
+      id-token: write # This is required to allow the GitHub Action to authenticate with Deno Deploy.
+      contents: read
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: canary
+
+      - run: bun install
+
+      - run: bun --bun run build
+        working-directory: apps/tmdb
+
+      - name: Deploy to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          project: tavern-tmdb
+          root: apps/tmdb/dist/
+          entrypoint: server/entry.mjs
