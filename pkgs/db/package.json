@@ -2,6 +2,9 @@
   "name": "@pkgs/db",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "echo 'no dev script'"
+  },
   "devDependencies": {
     "@types/bun": "^1.1.0"
   },

@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "experimentalUI": true,
   "pipeline": {
     "build": {
       "outputs": [
@@ -8,6 +9,12 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "dev": {
+      "cache": false,
+      "interactive": true,
+      "outputMode": "full",
+      "persistent": true
     },
     "test": {
       "dependsOn": [
