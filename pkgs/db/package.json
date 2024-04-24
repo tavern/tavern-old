@@ -15,6 +15,7 @@
   "dependencies": {
     "@libsql/client": "^0.6.0",
     "@pkgs/env": "workspace:*",
-    "drizzle-orm": "^0.30.9"
+    "drizzle-orm": "^0.30.9",
+    "nanoid": "^5.0.7"
   }
 }
