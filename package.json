@@ -8,6 +8,7 @@
     "test": "turbo run test"
   },
   "devDependencies": {
+    "@total-typescript/ts-reset": "^0.5.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "prettier-plugin-tailwindcss": "^0.5.14",
@@ -17,5 +18,9 @@
   "workspaces": [
     "apps/*",
     "pkgs/*"
-  ]
+  ],
+  "dependencies": {
+    "@upstash/qstash": "^2.4.3",
+    "date-fns": "^3.6.0"
+  }
 }
