@@ -1,4 +1,3 @@
-console.log('Hello via Bun!')
 import '@total-typescript/ts-reset'
 import env from '@pkgs/env'
 import { Client as QStashClient } from '@upstash/qstash'
@@ -45,18 +44,17 @@ export const updateImports = async (type: ImportType) => {
     .map(line => {
       if (!line) return
       const { success, data } = importLineSchema.safeParse(JSON.parse(line))
-      if (!success) return
-      return data
+      return success ? data : null
     })
     .filter(Boolean)
 
-  await qstash.batch(
-    lines.map(line => ({
-      body: JSON.stringify({ ...line, type }),
-      topic: `tmdb_import_${type}`,
-      headers: { 'Content-Type': 'application/json' },
-    })),
-  )
+  const batchItems = lines.map(line => ({
+    body: JSON.stringify({ ...line, type }),
+    topic: `tmdb_import_${type}`,
+    headers: { 'Content-Type': 'application/json' },
+  }))
+
+  await qstash.batch(batchItems)
 }
 
 export const processImport = async (item: ImportQueueItem) => {
