@@ -17,6 +17,14 @@
       "persistent": true
     },
     "test": {
+      "dotEnv": [
+        ".env",
+        ".env.local",
+        ".env.development",
+        ".env.development.local",
+        ".env.production",
+        ".env.production.local"
+      ],
       "dependsOn": [
         "^build"
       ]

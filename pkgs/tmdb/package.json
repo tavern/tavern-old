@@ -1,7 +1,10 @@
 {
-  "name": "@pkgs/import",
+  "name": "@pkgs/tmdb",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "test": "bun test"
+  },
   "devDependencies": {
     "@types/bun": "^1.1.0"
   },
