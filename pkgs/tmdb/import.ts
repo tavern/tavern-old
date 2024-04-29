@@ -1,5 +1,5 @@
-import '@total-typescript/ts-reset'
 import env from '@pkgs/env'
+import '@total-typescript/ts-reset'
 import { Client as QStashClient } from '@upstash/qstash'
 import { formatDate } from 'date-fns/format'
 import { gunzipSync } from 'node:zlib'
@@ -36,17 +36,21 @@ export type ImportQueueItem = z.infer<typeof importQueueItem>
 export const updateImports = async (type: ImportType) => {
   const file = await fetch(`${env.TMDB_FILES_URL}/${getExportFileName(type)}`)
   const buffer = gunzipSync(await file.arrayBuffer())
-  const text = new TextDecoder().decode(buffer)
-  const content = text.slice(0, 965) // TODO: remove this line after testing
 
-  const lines = content
+  const parseLine = (line: string) => {
+    if (!line) return
+    const { data } = importLineSchema.safeParse(JSON.parse(line))
+    return data
+  }
+
+  const text = new TextDecoder().decode(buffer)
+
+  const lines = text
     .split(/\n/)
-    .map(line => {
-      if (!line) return
-      const { success, data } = importLineSchema.safeParse(JSON.parse(line))
-      return success ? data : null
-    })
+    .map(parseLine)
     .filter(Boolean)
+    // TODO: remove splice after testing, it only prevents processing the whole file
+    .splice(10)
 
   const batchItems = lines.map(line => ({
     body: JSON.stringify({ ...line, type }),
