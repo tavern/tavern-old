@@ -17,7 +17,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(4321),
   DATABASE_URL: z.string(),
   DATABASE_AUTH_TOKEN: z.string().optional(),
-  TMDB_API_KEY: z.string(),
+  TMDB_API_KEY: z.string().optional(),
   TMDB_ACCESS_TOKEN: z.string(),
   TMDB_API_URL: z.string(),
   TMDB_FILES_URL: z.string(),
